@@ -8,8 +8,25 @@ public class Song {
     String title;
     String lyrics;
 
+    public Song(){
+
+    }
+
     public Song(String title, String lyrics){
         this.title = title;
         this.lyrics = lyrics;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
+    public String getLyrics(){
+        return lyrics;
+    }
+
+    @Override
+    public String toString() {
+        return title;
     }
 }

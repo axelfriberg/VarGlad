@@ -14,7 +14,8 @@ import java.util.List;
 
 
 public class MainActivity extends Activity {
-    private SongsDataSource datasource;
+    public final static String EXTRA_TITLE = "com.axelfriberg.varglad.SONG_TITLE";
+    private String tableNames[] = {"SherlockHolmes","Muren"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,43 +25,14 @@ public class MainActivity extends Activity {
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(this));
 
-
-        datasource = new SongsDataSource(this);
-        datasource.open();
-
-        String spexanthem = "Nu är det spex på gång \n " +
-                "å våran glada sång \n" +
-                " Kommer att göras över alla natten lång \n " +
-                "Kom hit så ska Ni se \n Att det blir stor succé \n " +
-                "Å vår publik den skriker om och om igen \n \n " +
-                "Nu är det spex på gång \n " +
-                "Å hela natten lång \n " +
-                "Så ska vi hålla sexa. Kom så ska vi Spexa \n " +
-                "Att Vara Glad är bäst \n " +
-                "Nu ska det bli stor fest \n " +
-                "Å vi ska festa ända fram till morgonen \n \n" +
-                "Ra-ra-raj-raj-raj...";
-
-        Song song = datasource.createSong("Spex anthem", spexanthem);
-
-
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                List<Song> songs = datasource.getAllSongs();
-                Song song = songs.get(position);
-
-                Intent intent = new Intent(MainActivity.this, ViewSongActivity.class);
-                intent.putExtra(ViewSongActivity.EXTRA_TITLE, song.getTitle());
-                intent.putExtra(ViewSongActivity.EXTRA_LYRICS, song.getLyrics());
+                Intent intent = new Intent(MainActivity.this, ListSongsActivity.class);
+                intent.putExtra(EXTRA_TITLE, tableNames[position]);
                 startActivity(intent);
             }
         });
-
-
-
-
-
     }
 
     @Override
@@ -88,13 +60,11 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onResume() {
-        datasource.open();
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        datasource.close();
         super.onPause();
     }
 }

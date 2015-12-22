@@ -1,0 +1,64 @@
+package com.axelfriberg.varglad;
+
+import android.app.ListActivity;
+import android.database.Cursor;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ListAdapter;
+import android.widget.SimpleCursorAdapter;
+
+
+public class ListSongsActivity extends ListActivity {
+    private Cursor songs;
+    private MyDatabase db;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_list_songs);
+
+        db = new MyDatabase(this);
+        songs = db.getSongs("SherlockHolmes"); // you would not typically call this on the main thread
+
+        ListAdapter adapter = new SimpleCursorAdapter(this,
+                android.R.layout.simple_list_item_1,
+                songs,
+                new String[] {"title"},
+                new int[] {android.R.id.text1});
+
+        getListView().setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_list_songs, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        songs.close();
+        db.close();
+    }
+}

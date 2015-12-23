@@ -34,7 +34,6 @@ public class MyDatabase extends SQLiteAssetHelper {
 
         c.moveToFirst();
         return c;
-
     }
 
 }

@@ -26,6 +26,6 @@ public class ViewSongActivity extends Activity {
         String lyrics = intent.getStringExtra(ListSongsActivity.EXTRA_LYRICS);
 
         setTitle(title);
-        mLyricsTextView.setText("FISK");
+        mLyricsTextView.setText(lyrics);
     }
 }

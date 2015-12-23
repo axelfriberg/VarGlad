@@ -67,9 +67,11 @@ public class ListSongsActivity extends ListActivity {
         cursor.moveToPosition(position);
 
         String title = cursor.getString(cursor.getColumnIndex("title"));
+        String lyrics = cursor.getString(cursor.getColumnIndex("lyrics"));
 
         Intent intent = new Intent(this, ViewSongActivity.class);
         intent.putExtra(EXTRA_TITLE, title);
+        intent.putExtra(EXTRA_LYRICS, lyrics);
         startActivity(intent);
     }
 

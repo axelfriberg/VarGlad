@@ -20,7 +20,7 @@
         <activity
             android:name=".ViewSongActivity"
             android:label="@string/title_activity_view_song"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".ViewSongActivity" >
         </activity>
         <activity
             android:name=".ListSongsActivity"

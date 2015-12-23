@@ -35,7 +35,6 @@ public class ImageAdapter extends BaseAdapter {
             imageView.setLayoutParams(new GridView.LayoutParams(400,600));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);
-            imageView.setBackground(mContext.getDrawable(R.drawable.abc_dialog_material_background_light));
         } else {
             imageView = (ImageView) convertView;
         }
@@ -46,7 +45,8 @@ public class ImageAdapter extends BaseAdapter {
 
     // references to our images
     private Integer[] mThumbIds = {
+            R.drawable.sherlock_holmes,
             R.drawable.drottning_kristina,
-            R.drawable.en_karnevalssaga, R.drawable.sherlock_holmes
+            R.drawable.en_karnevalssaga
     };
 }

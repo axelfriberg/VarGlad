@@ -24,8 +24,13 @@ public class ListSongsActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_songs);
 
+
+        Intent intent = getIntent();
+        String tableName = intent.getStringExtra(MainActivity.EXTRA_TITLE);
+        setTitle(tableName);
+
         db = new MyDatabase(this);
-        songs = db.getSongs("SherlockHolmes"); // you would not typically call this on the main thread
+        songs = db.getSongs(tableName); // you would not typically call this on the main thread
 
         ListAdapter adapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_list_item_1,
@@ -69,12 +74,13 @@ public class ListSongsActivity extends ListActivity {
         String title = cursor.getString(cursor.getColumnIndex("title"));
         String lyrics = cursor.getString(cursor.getColumnIndex("lyrics"));
 
+        cursor.close();
+
         Intent intent = new Intent(this, ViewSongActivity.class);
         intent.putExtra(EXTRA_TITLE, title);
         intent.putExtra(EXTRA_LYRICS, lyrics);
         startActivity(intent);
     }
-
 
 
     @Override

@@ -1,18 +1,23 @@
 package com.axelfriberg.varglad;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 
 public class ListSongsActivity extends ListActivity {
     private Cursor songs;
     private MyDatabase db;
+    public final static String EXTRA_TITLE = "com.axelfriberg.varglad.SONG_TITLE";
+    public final static String EXTRA_LYRICS = "com.axelfriberg.varglad.SONG_LYRICS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,21 @@ public class ListSongsActivity extends ListActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        Cursor cursor = ((SimpleCursorAdapter)l.getAdapter()).getCursor();
+        cursor.moveToPosition(position);
+
+        String title = cursor.getString(cursor.getColumnIndex("title"));
+
+        Intent intent = new Intent(this, ViewSongActivity.class);
+        intent.putExtra(EXTRA_TITLE, title);
+        startActivity(intent);
     }
 
 

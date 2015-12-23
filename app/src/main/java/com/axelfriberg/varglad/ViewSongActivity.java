@@ -13,8 +13,7 @@ import android.widget.TextView;
 
 public class ViewSongActivity extends Activity {
     private TextView mLyricsTextView;
-    public final static String EXTRA_TITLE = "com.axelfriberg.varglad.SONG_TITLE";
-    public final static String EXTRA_LYRICS = "com.axelfriberg.varglad.SONG_LYRICS";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +22,10 @@ public class ViewSongActivity extends Activity {
         setContentView(R.layout.activity_view_song);
 
         mLyricsTextView = (TextView) findViewById(R.id.lyrics_TextView);
-        String title = intent.getStringExtra(EXTRA_TITLE);
-        String lyrics = intent.getStringExtra(EXTRA_LYRICS);
+        String title = intent.getStringExtra(ListSongsActivity.EXTRA_TITLE);
+        String lyrics = intent.getStringExtra(ListSongsActivity.EXTRA_LYRICS);
 
         setTitle(title);
-        mLyricsTextView.setText(lyrics);
+        mLyricsTextView.setText("FISK");
     }
 }

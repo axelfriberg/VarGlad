@@ -15,7 +15,7 @@ import java.util.List;
 
 public class MainActivity extends Activity {
     public final static String EXTRA_TITLE = "com.axelfriberg.varglad.SONG_TITLE";
-    private String tableNames[] = {"SherlockHolmes","Muren"};
+    private String tableNames[] = {"SherlockHolmes","Muren","DrottningKristina"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

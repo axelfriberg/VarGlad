@@ -15,7 +15,7 @@ import java.util.List;
 
 public class MainActivity extends Activity {
     public final static String EXTRA_TITLE = "com.axelfriberg.varglad.SONG_TITLE";
-    private String tableNames[] = {"SherlockHolmes","Muren","DrottningKristina"};
+    private MyAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +23,14 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(this));
+        adapter = new MyAdapter(this);
+        gridview.setAdapter(adapter);
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 Intent intent = new Intent(MainActivity.this, ListSongsActivity.class);
-                intent.putExtra(EXTRA_TITLE, tableNames[position]);
+                intent.putExtra(EXTRA_TITLE, adapter.getItemName(position));
                 startActivity(intent);
             }
         });
@@ -50,9 +51,7 @@ public class MainActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }

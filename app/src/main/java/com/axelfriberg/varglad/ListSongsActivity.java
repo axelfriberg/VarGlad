@@ -16,18 +16,20 @@ import android.widget.SimpleCursorAdapter;
 public class ListSongsActivity extends ListActivity {
     private Cursor songs;
     private MyDatabase db;
+    private Bundle sis;
     public final static String EXTRA_TITLE = "com.axelfriberg.varglad.SONG_TITLE";
     public final static String EXTRA_LYRICS = "com.axelfriberg.varglad.SONG_LYRICS";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sis = savedInstanceState;
         setContentView(R.layout.activity_list_songs);
 
 
         Intent intent = getIntent();
         String tableName = intent.getStringExtra(MainActivity.EXTRA_TITLE);
-        setTitle(tableName);
+        setTitle(tableName.replaceAll("(\\p{Ll})(\\p{Lu})", "$1 $2"));
 
         db = new MyDatabase(this);
         songs = db.getSongs(tableName); // you would not typically call this on the main thread
@@ -56,9 +58,7 @@ public class ListSongsActivity extends ListActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -88,5 +88,11 @@ public class ListSongsActivity extends ListActivity {
         super.onDestroy();
         songs.close();
         db.close();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        onCreate(sis);
     }
 }

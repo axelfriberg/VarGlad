@@ -3,7 +3,6 @@ package com.axelfriberg.varglad;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +15,8 @@ import android.widget.SimpleCursorAdapter;
 public class ListSongsActivity extends ListActivity {
     private Cursor songs;
     private MyDatabase db;
+    private static String tableName;
+    private static String title;
     private Bundle sis;
     public final static String EXTRA_TITLE = "com.axelfriberg.varglad.SONG_TITLE";
     public final static String EXTRA_LYRICS = "com.axelfriberg.varglad.SONG_LYRICS";
@@ -23,22 +24,28 @@ public class ListSongsActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sis = savedInstanceState;
         setContentView(R.layout.activity_list_songs);
-
+        sis = savedInstanceState;
 
         Intent intent = getIntent();
-        String tableName = intent.getStringExtra(MainActivity.EXTRA_TITLE);
-        setTitle(tableName.replaceAll("(\\p{Ll})(\\p{Lu})", "$1 $2"));
+        String extraTitle = intent.getStringExtra(MainActivity.EXTRA_TITLE);
 
+        if (extraTitle != null) {
+            title = extraTitle.replaceAll("(\\p{Ll})(\\p{Lu})", "$1 $2");
+
+            tableName = extraTitle;
+
+        }
+
+        setTitle(title);
         db = new MyDatabase(this);
         songs = db.getSongs(tableName); // you would not typically call this on the main thread
 
         ListAdapter adapter = new SimpleCursorAdapter(this,
                 android.R.layout.simple_list_item_1,
                 songs,
-                new String[] {"title"},
-                new int[] {android.R.id.text1});
+                new String[]{"title"},
+                new int[]{android.R.id.text1});
 
         getListView().setAdapter(adapter);
     }
@@ -47,7 +54,7 @@ public class ListSongsActivity extends ListActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_list_songs, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -68,7 +75,7 @@ public class ListSongsActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        Cursor cursor = ((SimpleCursorAdapter)l.getAdapter()).getCursor();
+        Cursor cursor = ((SimpleCursorAdapter) l.getAdapter()).getCursor();
         cursor.moveToPosition(position);
 
         String title = cursor.getString(cursor.getColumnIndex("title"));
@@ -82,6 +89,12 @@ public class ListSongsActivity extends ListActivity {
         startActivity(intent);
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        onCreate(sis);
+    }
+
 
     @Override
     protected void onDestroy() {
@@ -89,10 +102,6 @@ public class ListSongsActivity extends ListActivity {
         songs.close();
         db.close();
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        onCreate(sis);
-    }
 }
+
+

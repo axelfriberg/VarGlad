@@ -25,6 +25,8 @@ public final class MyAdapter extends BaseAdapter {
         mItems.add(new Item("Drottning Kristina",  R.drawable.drottning_kristina));
         mItems.add(new Item("Sherlock Holmes",   R.drawable.sherlock_holmes));
         mItems.add(new Item("En Karnevalssaga",   R.drawable.en_karnevalssaga));
+        mItems.add(new Item("DIII",   R.drawable.diii));
+        mItems.add(new Item("Muren",R.drawable.muren));
     }
 
     @Override

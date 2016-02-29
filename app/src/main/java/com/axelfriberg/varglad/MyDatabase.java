@@ -11,9 +11,6 @@ public class MyDatabase extends SQLiteAssetHelper {
 
     private static final String DATABASE_NAME = "songs.db";
     private static final int DATABASE_VERSION = 1;
-    public static final String TABLE_SONGS = "songs";
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_LYRIC = "lyric";
 
     public MyDatabase(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

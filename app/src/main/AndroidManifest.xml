@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/VarGladMaterial">
         <activity
-            android:name=".MainActivity"
+            android:name=".UI.MainActivity.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,17 +20,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ViewSongActivity"
+            android:name=".UI.ViewSongActivity"
             android:label="@string/title_activity_view_song"
-            android:parentActivityName=".ListSongsActivity" >
+            android:parentActivityName=".UI.ListSongsActivity.ListSongsActivity" >
         </activity>
         <activity
-            android:name=".ListSongsActivity"
+            android:name=".UI.ListSongsActivity.ListSongsActivity"
             android:label="@string/title_activity_list_songs"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".UI.MainActivity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.axelfriberg.varglad.MainActivity" />
+                android:value="com.axelfriberg.varglad.UI.MainActivity.MainActivity" />
         </activity>
     </application>
 

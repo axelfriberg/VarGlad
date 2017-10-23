@@ -1,11 +1,27 @@
 package com.axelfriberg.varglad.UI.MainActivity;
 
-public class Spex {
-    public final java.lang.String name;
-    final int drawableId;
+class Spex {
+    private final String mTitle;
+    private final int mYear;
+    private final Semester mSemester;
+    private final int mPosterID;
 
-    Spex(java.lang.String name, int drawableId) {
-        this.name = name;
-        this.drawableId = drawableId;
+    enum Semester {
+        FALL, SPRING
+    }
+
+    Spex(String title, int year, Semester semester, int posterID) {
+        this.mTitle = title;
+        this.mYear = year;
+        this.mSemester = semester;
+        this.mPosterID = posterID;
+    }
+
+    public String getTitle() {
+        return mTitle;
+    }
+
+    int getPosterID() {
+        return mPosterID;
     }
 }

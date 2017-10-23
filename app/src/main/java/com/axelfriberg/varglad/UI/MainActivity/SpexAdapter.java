@@ -35,7 +35,7 @@ public class SpexAdapter extends RecyclerView.Adapter<SpexAdapter.ViewHolder>  {
 
         @Override
         public void onClick(View v) {
-            mListener.recyclerViewListClicked(mSpexArray[getAdapterPosition()].name);
+            mListener.recyclerViewListClicked(mSpexArray[getAdapterPosition()].getTitle());
         }
     }
 
@@ -50,6 +50,6 @@ public class SpexAdapter extends RecyclerView.Adapter<SpexAdapter.ViewHolder>  {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Spex spex = mSpexArray[position];
-        holder.mImageView.setImageResource(spex.drawableId);
+        holder.mImageView.setImageResource(spex.getPosterID());
     }
 }

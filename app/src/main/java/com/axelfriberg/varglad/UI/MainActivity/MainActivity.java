@@ -16,12 +16,12 @@ public class MainActivity extends Activity implements RecyclerViewClickListener 
     public final static java.lang.String EXTRA_SPEX_TITLE = "com.axelfriberg.varglad.main_activity.SPEX_TITLE";
 
     private final Spex[] mSpexArray = new Spex[]{
-            new Spex("DIII", R.drawable.diii),
-            new Spex("Drottning Kristina", R.drawable.drottning_kristina),
-            new Spex("En Karnevalssaga", R.drawable.en_karnevalssaga),
-            new Spex("Muren", R.drawable.muren),
-            new Spex("Sherlock Holmes", R.drawable.sherlock_holmes),
-            new Spex("Var Gladspexarna", R.drawable.var_gladspexarna),
+            new Spex("DIII", 2013, Spex.Semester.SPRING, R.drawable.diii),
+            new Spex("Drottning Kristina", 2015, Spex.Semester.FALL, R.drawable.drottning_kristina),
+            new Spex("En Karnevalssaga", 2014, Spex.Semester.SPRING, R.drawable.en_karnevalssaga),
+            new Spex("Muren", 2014, Spex.Semester.FALL, R.drawable.muren),
+            new Spex("Sherlock Holmes", 2015, Spex.Semester.SPRING, R.drawable.sherlock_holmes),
+            new Spex("Var Gladspexarna", 1998, Spex.Semester.SPRING, R.drawable.var_gladspexarna)
     };
 
     @Override

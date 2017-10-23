@@ -2,6 +2,7 @@ package com.axelfriberg.varglad.UI.MainActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,8 +32,10 @@ public class MainActivity extends Activity implements RecyclerViewClickListener 
         RecyclerView recyclerView = findViewById(R.id.main_recycler_view);
         recyclerView.setHasFixedSize(true);
 
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
-        recyclerView.setLayoutManager(layoutManager);
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        else
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
         RecyclerView.Adapter spexAdapter = new SpexAdapter(mSpexArray, this);
         recyclerView.setAdapter(spexAdapter);

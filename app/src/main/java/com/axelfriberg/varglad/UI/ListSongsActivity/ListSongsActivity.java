@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
 
 import com.axelfriberg.varglad.AssetHandler;
 import com.axelfriberg.varglad.R;
@@ -49,12 +48,6 @@ public class ListSongsActivity extends Activity implements RecyclerViewClickList
         }
 
         mRecyclerView.setAdapter(mSongAdapter);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_list_songs, menu);
-        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

@@ -4,9 +4,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.axelfriberg.varglad.R;
-import com.axelfriberg.varglad.SquareImageView;
 import com.axelfriberg.varglad.UI.RecyclerViewClickListener;
 
 
@@ -25,9 +25,9 @@ public class SpexAdapter extends RecyclerView.Adapter<SpexAdapter.ViewHolder>  {
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final SquareImageView mImageView;
+        private final ImageView mImageView;
 
-        ViewHolder(SquareImageView imageView) {
+        ViewHolder(ImageView imageView) {
             super(imageView);
             mImageView = imageView;
             mImageView.setOnClickListener(this);
@@ -42,7 +42,7 @@ public class SpexAdapter extends RecyclerView.Adapter<SpexAdapter.ViewHolder>  {
     @Override
     public SpexAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
-        SquareImageView imageView = (SquareImageView) LayoutInflater.from(parent.getContext())
+        ImageView imageView = (ImageView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.spex_view_holder, parent, false);
         return new ViewHolder(imageView);
     }

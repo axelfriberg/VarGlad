@@ -15,9 +15,11 @@ import com.axelfriberg.varglad.ui.RecyclerViewClickListener;
 import com.axelfriberg.varglad.ui.ViewSongActivity;
 
 
-public class ListSongsActivity extends AppCompatActivity implements RecyclerViewClickListener{
-    public final static String EXTRA_SONG_TITLE = "com.axelfriberg.varglad.list_songs_activity.EXTRA_SONG_TITLE";
-    public final static String EXTRA_SPEX_TITLE = "com.axelfriberg.varglad.list_songs_activity.EXTRA_SPEX_TITLE";
+public class ListSongsActivity extends AppCompatActivity implements RecyclerViewClickListener {
+    public static final String EXTRA_SONG_TITLE =
+            "com.axelfriberg.varglad.list_songs_activity.EXTRA_SONG_TITLE";
+    public static final String EXTRA_SPEX_TITLE =
+            "com.axelfriberg.varglad.list_songs_activity.EXTRA_SPEX_TITLE";
 
     private static String mSpexTitle;
     private RecyclerView.Adapter mSongAdapter;
@@ -36,8 +38,8 @@ public class ListSongsActivity extends AppCompatActivity implements RecyclerView
         }
 
         Intent intent = getIntent();
-        String extraTitle= intent.getStringExtra(MainActivity.EXTRA_SPEX_TITLE);
-        if(extraTitle != null)
+        String extraTitle = intent.getStringExtra(MainActivity.EXTRA_SPEX_TITLE);
+        if (extraTitle != null)
             mSpexTitle = extraTitle;
         else
             mSpexTitle = "Spex";
@@ -51,7 +53,7 @@ public class ListSongsActivity extends AppCompatActivity implements RecyclerView
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        if(mSongAdapter == null) {
+        if (mSongAdapter == null) {
             AssetHandler assetHandler = new AssetHandler(getApplicationContext().getAssets());
             mSongAdapter = new SongAdapter(assetHandler.getArrayOfSongTitles(mSpexTitle), this);
         }

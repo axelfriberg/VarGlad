@@ -31,9 +31,9 @@ class Spex {
 
         @Override
         public int compare(Spex a, Spex b) {
-            if(a.mYear < b.mYear)
+            if (a.mYear < b.mYear)
                 return -1;
-            else if(a.mYear == b.mYear){
+            else if (a.mYear == b.mYear) {
                 return a.mSemester.compareTo(b.mSemester);
             } else {
                 return 1;
@@ -45,9 +45,9 @@ class Spex {
             return new Comparator<Spex>() {
                 @Override
                 public int compare(Spex a, Spex b) {
-                    if(a.mYear < b.mYear)
+                    if (a.mYear < b.mYear)
                         return 1;
-                    else if(a.mYear == b.mYear){
+                    else if (a.mYear == b.mYear) {
                         return b.mSemester.compareTo(a.mSemester);
                     } else {
                         return -1;

@@ -25,7 +25,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {
         return mSongTitleArray.length;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final TextView mTextView;
         private final LinearLayout mLinearLayout;
 

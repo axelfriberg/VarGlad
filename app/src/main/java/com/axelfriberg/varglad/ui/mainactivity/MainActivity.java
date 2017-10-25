@@ -18,9 +18,12 @@ import com.axelfriberg.varglad.ui.RecyclerViewClickListener;
 
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewClickListener {
-    public final static String EXTRA_SPEX_TITLE = "com.axelfriberg.varglad.main_activity.EXTRA_SPEX_TITLE";
-    private final static String SIS_SORTING_MODE = "com.axelfriberg.varglad.main_activity.SIS_SORTING_MODE";
-    private final static String SIS_SORTING_CHECKED_ITEM = "com.axelfriberg.varglad.main_activity.SIS_SORTING_CHECKED_ITEM";
+    public static final String EXTRA_SPEX_TITLE =
+            "com.axelfriberg.varglad.main_activity.EXTRA_SPEX_TITLE";
+    private static final String SIS_SORTING_MODE =
+            "com.axelfriberg.varglad.main_activity.SIS_SORTING_MODE";
+    private static final String SIS_SORTING_CHECKED_ITEM =
+            "com.axelfriberg.varglad.main_activity.SIS_SORTING_CHECKED_ITEM";
 
     private SpexAdapter mSpexAdapter;
     private PopupMenu mPopupMenu;
@@ -48,14 +51,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         RecyclerView recyclerView = findViewById(R.id.main_recycler_view);
         recyclerView.setHasFixedSize(true);
 
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
             recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         else
             recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
         mSpexAdapter = new SpexAdapter(mSpexArray, this);
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             mSpexAdapter.sort(SpexAdapter.SortingMode.YEAR_DESCENDING);
             mCheckedItemID = R.id.sort_year_descending;
         } else {
@@ -87,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     }
 
     private void showSortingPopupMenu() {
-        if(mPopupMenu == null) {
+        if (mPopupMenu == null) {
             mPopupMenu = createPopupMenu();
             mPopupMenu.inflate(R.menu.main_sorting_menu);
             mPopupMenu.getMenu().findItem(mCheckedItemID).setChecked(true);
@@ -119,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     }
 
     private void checkSortingItem(MenuItem item) {
-        if(!item.isChecked())
+        if (!item.isChecked())
             item.setChecked(true);
         mCheckedItemID = item.getItemId();
     }

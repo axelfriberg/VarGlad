@@ -11,16 +11,17 @@ import java.io.InputStreamReader;
 public class AssetHandler {
     private final AssetManager mAssetManager;
 
-    public AssetHandler(AssetManager assetManager){
+    public AssetHandler(AssetManager assetManager) {
         mAssetManager = assetManager;
     }
 
-    public String readSongFile(String spexTitle, String songTitle){
+    public String readSongFile(String spexTitle, String songTitle) {
         spexTitle = spexTitle.replaceAll("\\s", "_").toLowerCase();
         songTitle = songTitle.replaceAll("\\s", "_");
 
         try {
-            InputStream is = mAssetManager.open(String.format("spex/%s/%s.txt", spexTitle, songTitle ));
+            InputStream is =
+                    mAssetManager.open(String.format("spex/%s/%s.txt", spexTitle, songTitle));
             InputStreamReader inputStreamReader = new InputStreamReader(is);
             BufferedReader reader = new BufferedReader(inputStreamReader);
             StringBuilder sb = new StringBuilder();
@@ -38,7 +39,7 @@ public class AssetHandler {
         }
     }
 
-    public String[] getArrayOfSongTitles(String spexTitle){
+    public String[] getArrayOfSongTitles(String spexTitle) {
         spexTitle = spexTitle.toLowerCase().replaceAll("\\s", "_");
         try {
             String[] listOfSongNames = mAssetManager.list("spex/" + spexTitle);

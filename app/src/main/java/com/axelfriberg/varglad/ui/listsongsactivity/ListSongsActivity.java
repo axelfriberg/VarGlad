@@ -20,9 +20,10 @@ public class ListSongsActivity extends AppCompatActivity implements RecyclerView
             "com.axelfriberg.varglad.list_songs_activity.EXTRA_SONG_TITLE";
     public static final String EXTRA_SPEX_TITLE =
             "com.axelfriberg.varglad.list_songs_activity.EXTRA_SPEX_TITLE";
+    public static final String SIS_SPEX_TITLE =
+            "com.axelfriberg.varglad.list_songs_activity.SIS_SPEX_TITLE";
 
     private static String mSpexTitle;
-    private RecyclerView.Adapter mSongAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +40,14 @@ public class ListSongsActivity extends AppCompatActivity implements RecyclerView
 
         Intent intent = getIntent();
         String extraTitle = intent.getStringExtra(MainActivity.EXTRA_SPEX_TITLE);
-        if (extraTitle != null)
+        if (extraTitle == null) {
+            if (savedInstanceState != null)
+                mSpexTitle = savedInstanceState.getString(SIS_SPEX_TITLE);
+            else if (mSpexTitle == null)
+                mSpexTitle = "Spex Title";
+        } else {
             mSpexTitle = extraTitle;
-        else
-            mSpexTitle = "Spex";
+        }
 
         setTitle(mSpexTitle);
 
@@ -53,12 +58,10 @@ public class ListSongsActivity extends AppCompatActivity implements RecyclerView
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        if (mSongAdapter == null) {
-            AssetHandler assetHandler = new AssetHandler(getApplicationContext().getAssets());
-            mSongAdapter = new SongAdapter(assetHandler.getArrayOfSongTitles(mSpexTitle), this);
-        }
-
-        mRecyclerView.setAdapter(mSongAdapter);
+        AssetHandler assetHandler = new AssetHandler(getApplicationContext().getAssets());
+        RecyclerView.Adapter songAdapter =
+                new SongAdapter(assetHandler.getArrayOfSongTitles(mSpexTitle), this);
+        mRecyclerView.setAdapter(songAdapter);
     }
 
     @Override
@@ -67,5 +70,11 @@ public class ListSongsActivity extends AppCompatActivity implements RecyclerView
         intent.putExtra(EXTRA_SONG_TITLE, songTitle);
         intent.putExtra(EXTRA_SPEX_TITLE, mSpexTitle);
         startActivity(intent);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString(SIS_SPEX_TITLE, mSpexTitle);
     }
 }

@@ -1,4 +1,4 @@
-package com.axelfriberg.varglad.UI.MainActivity;
+package com.axelfriberg.varglad.ui.mainactivity;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.axelfriberg.varglad.R;
-import com.axelfriberg.varglad.UI.RecyclerViewClickListener;
+import com.axelfriberg.varglad.ui.RecyclerViewClickListener;
 
 import java.util.Arrays;
 

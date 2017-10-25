@@ -1,4 +1,4 @@
-package com.axelfriberg.varglad.UI;
+package com.axelfriberg.varglad.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.axelfriberg.varglad.AssetHandler;
 import com.axelfriberg.varglad.R;
-import com.axelfriberg.varglad.UI.ListSongsActivity.ListSongsActivity;
+import com.axelfriberg.varglad.ui.listsongsactivity.ListSongsActivity;
 
 
 public class ViewSongActivity extends AppCompatActivity {
@@ -32,7 +32,7 @@ public class ViewSongActivity extends AppCompatActivity {
 
         setTitle(songTitle);
 
-        AssetHandler assetHandler = new AssetHandler(getApplicationContext());
+        AssetHandler assetHandler = new AssetHandler(getApplicationContext().getAssets());
 
         TextView lyricsTextView = findViewById(R.id.lyrics_TextView);
         lyricsTextView.setText(assetHandler.readSongFile(spexTitle, songTitle));

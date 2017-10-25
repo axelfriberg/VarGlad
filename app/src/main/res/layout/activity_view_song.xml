@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".UI.ViewSongActivity"
+    tools:context=".ui.ViewSongActivity"
     android:id="@+id/view_song_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,7 +20,7 @@
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".UI.ViewSongActivity">
+    tools:context=".ui.ViewSongActivity">
 
         <TextView
             android:id="@+id/lyrics_TextView"

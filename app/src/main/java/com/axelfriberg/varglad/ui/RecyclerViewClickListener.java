@@ -1,4 +1,4 @@
-package com.axelfriberg.varglad.UI;
+package com.axelfriberg.varglad.ui;
 
 
 public interface RecyclerViewClickListener {

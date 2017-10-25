@@ -1,4 +1,4 @@
-package com.axelfriberg.varglad.UI.MainActivity;
+package com.axelfriberg.varglad.ui.mainactivity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -13,14 +13,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.axelfriberg.varglad.R;
-import com.axelfriberg.varglad.UI.ListSongsActivity.ListSongsActivity;
-import com.axelfriberg.varglad.UI.RecyclerViewClickListener;
+import com.axelfriberg.varglad.ui.listsongsactivity.ListSongsActivity;
+import com.axelfriberg.varglad.ui.RecyclerViewClickListener;
 
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewClickListener {
     public final static String EXTRA_SPEX_TITLE = "com.axelfriberg.varglad.main_activity.EXTRA_SPEX_TITLE";
-    public final static String SIS_SORTING_MODE = "com.axelfriberg.varglad.main_activity.SIS_SORTING_MODE";
-    public final static String SIS_SORTING_CHECKED_ITEM = "com.axelfriberg.varglad.main_activity.SIS_SORTING_CHECKED_ITEM";
+    private final static String SIS_SORTING_MODE = "com.axelfriberg.varglad.main_activity.SIS_SORTING_MODE";
+    private final static String SIS_SORTING_CHECKED_ITEM = "com.axelfriberg.varglad.main_activity.SIS_SORTING_CHECKED_ITEM";
 
     private SpexAdapter mSpexAdapter;
     private PopupMenu mPopupMenu;

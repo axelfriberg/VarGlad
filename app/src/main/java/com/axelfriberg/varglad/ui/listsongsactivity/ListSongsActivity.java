@@ -1,4 +1,4 @@
-package com.axelfriberg.varglad.UI.ListSongsActivity;
+package com.axelfriberg.varglad.ui.listsongsactivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ import android.support.v7.widget.Toolbar;
 
 import com.axelfriberg.varglad.AssetHandler;
 import com.axelfriberg.varglad.R;
-import com.axelfriberg.varglad.UI.MainActivity.MainActivity;
-import com.axelfriberg.varglad.UI.RecyclerViewClickListener;
-import com.axelfriberg.varglad.UI.ViewSongActivity;
+import com.axelfriberg.varglad.ui.mainactivity.MainActivity;
+import com.axelfriberg.varglad.ui.RecyclerViewClickListener;
+import com.axelfriberg.varglad.ui.ViewSongActivity;
 
 
 public class ListSongsActivity extends AppCompatActivity implements RecyclerViewClickListener{
@@ -52,7 +52,7 @@ public class ListSongsActivity extends AppCompatActivity implements RecyclerView
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         if(mSongAdapter == null) {
-            AssetHandler assetHandler = new AssetHandler(getApplicationContext());
+            AssetHandler assetHandler = new AssetHandler(getApplicationContext().getAssets());
             mSongAdapter = new SongAdapter(assetHandler.getArrayOfSongTitles(mSpexTitle), this);
         }
 

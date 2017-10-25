@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.axelfriberg.varglad" >
 
-    <!-- android:theme="@android:style/Theme.Material.Light"-->
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/VarGladTheme">
     <activity
-            android:name=".UI.MainActivity.MainActivity"
+            android:name=".ui.mainactivity.MainActivity"
             android:label="@string/title_main_activity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,20 +18,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".UI.ViewSongActivity"
+            android:name=".ui.ViewSongActivity"
             android:label="@string/title_activity_view_song"
-            android:parentActivityName=".UI.ListSongsActivity.ListSongsActivity" >
+            android:parentActivityName=".ui.listsongsactivity.ListSongsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".UI.ListSongsActivity.ListSongsActivity" />
+                android:value=".ui.listsongsactivity.ListSongsActivity" />
         </activity>
         <activity
-            android:name=".UI.ListSongsActivity.ListSongsActivity"
+            android:name=".ui.listsongsactivity.ListSongsActivity"
             android:label="@string/title_activity_list_songs"
-            android:parentActivityName=".UI.MainActivity.MainActivity" >
+            android:parentActivityName=".ui.mainactivity.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.axelfriberg.varglad.UI.MainActivity.MainActivity" />
+                android:value="com.axelfriberg.varglad.ui.mainactivity.MainActivity" />
         </activity>
     </application>
 

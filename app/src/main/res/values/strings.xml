@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Var Glad</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_view_song">ViewSongActivity</string>
     <string name="title_activity_list_songs">ListSongsActivity</string>
 

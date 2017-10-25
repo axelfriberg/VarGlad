@@ -1,4 +1,4 @@
-package com.axelfriberg.varglad.UI.ListSongsActivity;
+package com.axelfriberg.varglad.ui.listsongsactivity;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.axelfriberg.varglad.R;
-import com.axelfriberg.varglad.UI.RecyclerViewClickListener;
+import com.axelfriberg.varglad.ui.RecyclerViewClickListener;
 
 
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.ViewHolder> {

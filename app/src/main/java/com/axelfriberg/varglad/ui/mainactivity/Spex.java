@@ -1,4 +1,4 @@
-package com.axelfriberg.varglad.UI.MainActivity;
+package com.axelfriberg.varglad.ui.mainactivity;
 
 import java.util.Comparator;
 
@@ -23,14 +23,6 @@ class Spex {
         return mTitle;
     }
 
-    int getYear() {
-        return mYear;
-    }
-
-    Semester getSemester() {
-        return mSemester;
-    }
-
     int getPosterID() {
         return mPosterID;
     }
@@ -39,12 +31,10 @@ class Spex {
 
         @Override
         public int compare(Spex a, Spex b) {
-            int yearA = a.getYear();
-            int yearB = b.getYear();
-            if(yearA < yearB)
+            if(a.mYear < b.mYear)
                 return -1;
-            else if(yearA == yearB){
-                return a.getSemester().compareTo(b.getSemester());
+            else if(a.mYear == b.mYear){
+                return a.mSemester.compareTo(b.mSemester);
             } else {
                 return 1;
             }
@@ -55,12 +45,10 @@ class Spex {
             return new Comparator<Spex>() {
                 @Override
                 public int compare(Spex a, Spex b) {
-                    int yearA = a.getYear();
-                    int yearB = b.getYear();
-                    if(yearA < yearB)
+                    if(a.mYear < b.mYear)
                         return 1;
-                    else if(yearA == yearB){
-                        return b.getSemester().compareTo(a.getSemester());
+                    else if(a.mYear == b.mYear){
+                        return b.mSemester.compareTo(a.mSemester);
                     } else {
                         return -1;
                     }

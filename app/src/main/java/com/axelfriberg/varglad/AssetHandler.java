@@ -1,6 +1,5 @@
 package com.axelfriberg.varglad;
 
-import android.content.Context;
 import android.content.res.AssetManager;
 
 import java.io.BufferedReader;
@@ -10,12 +9,10 @@ import java.io.InputStreamReader;
 
 
 public class AssetHandler {
-    private Context mContext;
-    private AssetManager mAssetManager;
+    private final AssetManager mAssetManager;
 
-    public AssetHandler(Context context){
-        mContext = context;
-        mAssetManager = mContext.getAssets();
+    public AssetHandler(AssetManager assetManager){
+        mAssetManager = assetManager;
     }
 
     public String readSongFile(String spexTitle, String songTitle){

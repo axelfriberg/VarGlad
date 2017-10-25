@@ -1,10 +1,12 @@
 package com.axelfriberg.varglad.UI.ListSongsActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.axelfriberg.varglad.AssetHandler;
 import com.axelfriberg.varglad.R;
@@ -13,33 +15,40 @@ import com.axelfriberg.varglad.UI.RecyclerViewClickListener;
 import com.axelfriberg.varglad.UI.ViewSongActivity;
 
 
-public class ListSongsActivity extends Activity implements RecyclerViewClickListener{
-    public final static String EXTRA_SONG_TITLE = "com.axelfriberg.varglad.list_songs_activity.SONG_TITLE";
-    public final static String EXTRA_SPEX_TITLE = "com.axelfriberg.varglad.list_songs_activity.SPEX_TITLE";
+public class ListSongsActivity extends AppCompatActivity implements RecyclerViewClickListener{
+    public final static String EXTRA_SONG_TITLE = "com.axelfriberg.varglad.list_songs_activity.EXTRA_SONG_TITLE";
+    public final static String EXTRA_SPEX_TITLE = "com.axelfriberg.varglad.list_songs_activity.EXTRA_SPEX_TITLE";
 
     private static String mSpexTitle;
-
-    private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mSongAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_songs);
 
+        Toolbar toolbar = findViewById(R.id.list_songs_toolbar);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         Intent intent = getIntent();
         String extraTitle= intent.getStringExtra(MainActivity.EXTRA_SPEX_TITLE);
         if(extraTitle != null)
             mSpexTitle = extraTitle;
+        else
+            mSpexTitle = "Spex";
 
         setTitle(mSpexTitle);
 
-        mRecyclerView = findViewById(R.id.songs_recycler_view);
+        RecyclerView mRecyclerView = findViewById(R.id.songs_list_recycler_view);
 
         mRecyclerView.setHasFixedSize(true);
 
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         if(mSongAdapter == null) {
@@ -48,16 +57,6 @@ public class ListSongsActivity extends Activity implements RecyclerViewClickList
         }
 
         mRecyclerView.setAdapter(mSongAdapter);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume(){
-        super.onResume();
     }
 
     @Override

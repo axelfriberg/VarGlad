@@ -9,10 +9,18 @@ import android.widget.ImageView;
 import com.axelfriberg.varglad.R;
 import com.axelfriberg.varglad.UI.RecyclerViewClickListener;
 
+import java.util.Arrays;
+
 
 public class SpexAdapter extends RecyclerView.Adapter<SpexAdapter.ViewHolder>  {
     private static Spex[] mSpexArray;
     private static RecyclerViewClickListener mListener;
+    private SortingMode mSortingMode;
+
+    enum SortingMode {
+        YEAR_ASCENDING,
+        YEAR_DESCENDING
+    }
 
     SpexAdapter(Spex[] spexArray, RecyclerViewClickListener listener) {
         mSpexArray = spexArray;
@@ -22,6 +30,10 @@ public class SpexAdapter extends RecyclerView.Adapter<SpexAdapter.ViewHolder>  {
     @Override
     public int getItemCount() {
         return mSpexArray.length;
+    }
+
+    SortingMode getSortingMode() {
+        return mSortingMode;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -37,6 +49,7 @@ public class SpexAdapter extends RecyclerView.Adapter<SpexAdapter.ViewHolder>  {
         public void onClick(View v) {
             mListener.recyclerViewListClicked(mSpexArray[getAdapterPosition()].getTitle());
         }
+
     }
 
     @Override
@@ -51,5 +64,31 @@ public class SpexAdapter extends RecyclerView.Adapter<SpexAdapter.ViewHolder>  {
     public void onBindViewHolder(ViewHolder holder, int position) {
         Spex spex = mSpexArray[position];
         holder.mImageView.setImageResource(spex.getPosterID());
+    }
+
+    void sort(SortingMode sortingMode) {
+        switch (sortingMode) {
+            case YEAR_ASCENDING:
+                sortYearAscending();
+                mSortingMode = SortingMode.YEAR_ASCENDING;
+                break;
+            case YEAR_DESCENDING:
+                sortYearDescending();
+                mSortingMode = SortingMode.YEAR_DESCENDING;
+                break;
+            default:
+                sortYearAscending();
+                break;
+        }
+    }
+
+    private void sortYearAscending() {
+        Arrays.sort(mSpexArray, new Spex.YearComparator());
+        notifyDataSetChanged();
+    }
+
+    private void sortYearDescending() {
+        Arrays.sort(mSpexArray, new Spex.YearComparator().reversed());
+        notifyDataSetChanged();
     }
 }

@@ -1,10 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- Base application theme. -->
-    <!-- extend one of the Theme.AppCompat themes -->
-    <style name="VarGladMaterial" parent="android:Theme.Holo.Light">
-        <!-- customize the color palette -->
-
+    <style name="VarGladTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/VGBlue</item>
+        <item name="colorAccent">@color/VGBlue</item>
     </style>
-
 </resources>

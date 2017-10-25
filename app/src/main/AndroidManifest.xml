@@ -9,10 +9,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/VarGladMaterial">
-        <activity
+        android:theme="@style/VarGladTheme">
+    <activity
             android:name=".UI.MainActivity.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/title_main_activity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,6 +23,9 @@
             android:name=".UI.ViewSongActivity"
             android:label="@string/title_activity_view_song"
             android:parentActivityName=".UI.ListSongsActivity.ListSongsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".UI.ListSongsActivity.ListSongsActivity" />
         </activity>
         <activity
             android:name=".UI.ListSongsActivity.ListSongsActivity"

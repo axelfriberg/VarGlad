@@ -4,6 +4,9 @@
     <string name="title_activity_view_song">ViewSongActivity</string>
     <string name="title_activity_list_songs">ListSongsActivity</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="poster_content_description">Poster of a spex</string>
+    <string name="action_sort">Sort</string>
+    <string name="sort_year_ascending">Sort by year (ascending)</string>
+    <string name="sort_year_descending">Sort by year (descending)</string>
+    <string name="title_main_activity">Var GladSpexarna</string>
 </resources>

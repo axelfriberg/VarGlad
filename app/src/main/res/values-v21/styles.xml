@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="VarGladTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/VGBlue</item>
-        <item name="colorAccent">@color/VGBlue</item>
-        <item name="android:statusBarColor">@color/VGBlue</item>
+        <item name="colorPrimary">@color/vg_blue</item>
+        <item name="colorAccent">@color/vg_blue</item>
+        <item name="android:statusBarColor">@color/status_bar</item>
     </style>
 </resources>

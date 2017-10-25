@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3f51b5</color>
-    <color name="VGBlue">#2c77cb</color>
+    <color name="vg_blue">#2c77cb</color>
+    <color name="colorPrimary">@color/vg_blue</color>
+    <color name="status_bar">#235d9f</color>
 </resources>

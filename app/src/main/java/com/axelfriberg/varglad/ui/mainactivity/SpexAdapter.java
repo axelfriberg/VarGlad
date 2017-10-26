@@ -66,6 +66,8 @@ public class SpexAdapter extends RecyclerView.Adapter<SpexAdapter.ViewHolder>  {
         holder.mImageView.setImageResource(spex.getPosterID());
     }
 
+    //TODO: Sort by name
+    //TODO: Add search
     void sort(SortingMode sortingMode) {
         switch (sortingMode) {
             case YEAR_ASCENDING:
@@ -84,11 +86,9 @@ public class SpexAdapter extends RecyclerView.Adapter<SpexAdapter.ViewHolder>  {
 
     private void sortYearAscending() {
         Arrays.sort(mSpexArray, new Spex.YearComparator());
-        notifyDataSetChanged();
     }
 
     private void sortYearDescending() {
         Arrays.sort(mSpexArray, new Spex.YearComparator().reversed());
-        notifyDataSetChanged();
     }
 }

@@ -1,5 +1,6 @@
 package com.axelfriberg.varglad.ui.mainactivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -11,10 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 import com.axelfriberg.varglad.R;
-import com.axelfriberg.varglad.ui.listsongsactivity.ListSongsActivity;
 import com.axelfriberg.varglad.ui.RecyclerViewClickListener;
+import com.axelfriberg.varglad.ui.listsongsactivity.ListSongsActivity;
 
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewClickListener {
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     private SpexAdapter mSpexAdapter;
     private PopupMenu mPopupMenu;
     private int mCheckedItemID;
+    private RecyclerView mRecyclerView;
 
     private final Spex[] mSpexArray = new Spex[]{
             new Spex("DIII", 2013, Spex.Semester.SPRING, R.drawable.diii),
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //TODO: Translate app to swedish
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -48,13 +53,13 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView recyclerView = findViewById(R.id.main_recycler_view);
-        recyclerView.setHasFixedSize(true);
+        mRecyclerView = findViewById(R.id.main_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
 
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
-            recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+            mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         else
-            recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+            mRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
         mSpexAdapter = new SpexAdapter(mSpexArray, this);
 
@@ -68,7 +73,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             mCheckedItemID = savedInstanceState.getInt(SIS_SORTING_CHECKED_ITEM);
         }
 
-        recyclerView.setAdapter(mSpexAdapter);
+        mRecyclerView.setAdapter(mSpexAdapter);
+
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this,
+                R.anim.layout_animation_from_bottom);
+        mRecyclerView.setLayoutAnimation(animation);
     }
 
     @Override
@@ -108,10 +117,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
                     case R.id.sort_year_ascending:
                         mSpexAdapter.sort(SpexAdapter.SortingMode.YEAR_ASCENDING);
                         checkSortingItem(item);
+                        runLayoutEnterAnimation(mRecyclerView);
                         return true;
                     case R.id.sort_year_descending:
                         mSpexAdapter.sort(SpexAdapter.SortingMode.YEAR_DESCENDING);
                         checkSortingItem(item);
+                        runLayoutEnterAnimation(mRecyclerView);
                     default:
                         return false;
                 }
@@ -125,6 +136,16 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         if (!item.isChecked())
             item.setChecked(true);
         mCheckedItemID = item.getItemId();
+    }
+
+    private void runLayoutEnterAnimation(final RecyclerView recyclerView) {
+        final Context context = recyclerView.getContext();
+        final LayoutAnimationController controller =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_from_bottom);
+
+        recyclerView.setLayoutAnimation(controller);
+        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.scheduleLayoutAnimation();
     }
 
     @Override

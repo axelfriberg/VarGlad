@@ -44,14 +44,31 @@ class Spex {
         public Comparator<Spex> reversed() {
             return new Comparator<Spex>() {
                 @Override
-                public int compare(Spex a, Spex b) {
-                    if (a.mYear < b.mYear)
+                public int compare(Spex s1, Spex s2) {
+                    if (s1.mYear < s2.mYear)
                         return 1;
-                    else if (a.mYear == b.mYear) {
-                        return b.mSemester.compareTo(a.mSemester);
+                    else if (s1.mYear == s2.mYear) {
+                        return s2.mSemester.compareTo(s1.mSemester);
                     } else {
                         return -1;
                     }
+                }
+            };
+        }
+    }
+
+    static class TitleComparator implements Comparator<Spex> {
+        @Override
+        public int compare(Spex s1, Spex s2) {
+            return s1.mTitle.compareToIgnoreCase(s2.mTitle);
+        }
+
+        @Override
+        public Comparator<Spex> reversed() {
+            return new Comparator<Spex>() {
+                @Override
+                public int compare(Spex s1, Spex s2) {
+                    return s2.mTitle.compareToIgnoreCase(s1.mTitle);
                 }
             };
         }

@@ -5,5 +5,9 @@
             android:title="@string/sort_year_descending"/>
         <item android:id="@+id/sort_year_ascending"
             android:title="@string/sort_year_ascending" />
+        <item android:id="@+id/sort_title_ascending"
+            android:title="@string/sort_title_ascending" />
+        <item android:id="@+id/sort_title_descending"
+            android:title="@string/sort_title_descending" />
     </group>
 </menu>

@@ -115,14 +115,33 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.sort_year_ascending:
-                        mSpexAdapter.sort(SpexAdapter.SortingMode.YEAR_ASCENDING);
-                        checkSortingItem(item);
-                        runLayoutEnterAnimation(mRecyclerView);
+                        if (!item.isChecked()) {
+                            mSpexAdapter.sort(SpexAdapter.SortingMode.YEAR_ASCENDING);
+                            checkSortingItem(item);
+                            runLayoutEnterAnimation(mRecyclerView);
+                        }
                         return true;
                     case R.id.sort_year_descending:
-                        mSpexAdapter.sort(SpexAdapter.SortingMode.YEAR_DESCENDING);
-                        checkSortingItem(item);
-                        runLayoutEnterAnimation(mRecyclerView);
+                        if (!item.isChecked()) {
+                            mSpexAdapter.sort(SpexAdapter.SortingMode.YEAR_DESCENDING);
+                            checkSortingItem(item);
+                            runLayoutEnterAnimation(mRecyclerView);
+                        }
+                        return true;
+                    case R.id.sort_title_ascending:
+                        if (!item.isChecked()) {
+                            mSpexAdapter.sort(SpexAdapter.SortingMode.TITLE_ASCENDING);
+                            checkSortingItem(item);
+                            runLayoutEnterAnimation(mRecyclerView);
+                        }
+                        return true;
+                    case R.id.sort_title_descending:
+                        if (!item.isChecked()) {
+                            mSpexAdapter.sort(SpexAdapter.SortingMode.TITLE_DESCENDING);
+                            checkSortingItem(item);
+                            runLayoutEnterAnimation(mRecyclerView);
+                        }
+                        return true;
                     default:
                         return false;
                 }
@@ -133,8 +152,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     }
 
     private void checkSortingItem(MenuItem item) {
-        if (!item.isChecked())
-            item.setChecked(true);
+        item.setChecked(true);
         mCheckedItemID = item.getItemId();
     }
 

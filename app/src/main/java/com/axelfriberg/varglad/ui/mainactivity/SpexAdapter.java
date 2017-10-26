@@ -1,6 +1,7 @@
 package com.axelfriberg.varglad.ui.mainactivity;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +14,17 @@ import java.util.Arrays;
 
 
 public class SpexAdapter extends RecyclerView.Adapter<SpexAdapter.ViewHolder>  {
+    private static final String TAG = "SpexAdapter";
+
     private static Spex[] mSpexArray;
     private static RecyclerViewClickListener mListener;
     private SortingMode mSortingMode;
 
     enum SortingMode {
         YEAR_ASCENDING,
-        YEAR_DESCENDING
+        YEAR_DESCENDING,
+        TITLE_ASCENDING,
+        TITLE_DESCENDING
     }
 
     SpexAdapter(Spex[] spexArray, RecyclerViewClickListener listener) {
@@ -71,24 +76,40 @@ public class SpexAdapter extends RecyclerView.Adapter<SpexAdapter.ViewHolder>  {
     void sort(SortingMode sortingMode) {
         switch (sortingMode) {
             case YEAR_ASCENDING:
-                sortYearAscending();
-                mSortingMode = SortingMode.YEAR_ASCENDING;
+                mSortingMode = sortYearAscending();
                 break;
             case YEAR_DESCENDING:
-                sortYearDescending();
-                mSortingMode = SortingMode.YEAR_DESCENDING;
+                mSortingMode = sortYearDescending();
+                break;
+            case TITLE_ASCENDING:
+                mSortingMode = sortTitleAscending();
+                break;
+            case TITLE_DESCENDING:
+                mSortingMode = sortTitleDescending();
                 break;
             default:
-                sortYearAscending();
+                Log.i(TAG, "That sorting mode does not exist.");
                 break;
         }
     }
 
-    private void sortYearAscending() {
+    private SortingMode sortYearAscending() {
         Arrays.sort(mSpexArray, new Spex.YearComparator());
+        return SortingMode.YEAR_ASCENDING;
     }
 
-    private void sortYearDescending() {
+    private SortingMode sortYearDescending() {
         Arrays.sort(mSpexArray, new Spex.YearComparator().reversed());
+        return SortingMode.YEAR_DESCENDING;
+    }
+
+    private SortingMode sortTitleAscending() {
+        Arrays.sort(mSpexArray, new Spex.TitleComparator());
+        return SortingMode.TITLE_ASCENDING;
+    }
+
+    private SortingMode sortTitleDescending() {
+        Arrays.sort(mSpexArray, new Spex.TitleComparator().reversed());
+        return SortingMode.TITLE_DESCENDING;
     }
 }

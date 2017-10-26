@@ -5,7 +5,9 @@
 
     <string name="poster_content_description">Poster of a spex</string>
     <string name="action_sort">Sort</string>
-    <string name="sort_year_ascending">Sort by year (ascending)</string>
-    <string name="sort_year_descending">Sort by year (descending)</string>
+    <string name="sort_year_ascending">Sort by year (old-new)</string>
+    <string name="sort_year_descending">Sort by year (new-old)</string>
     <string name="title_main_activity">Var GladSpexarna</string>
+    <string name="sort_title_descending">Sort by title (Ö-A)</string>
+    <string name="sort_title_ascending">Sort by title (A-Ö)</string>
 </resources>

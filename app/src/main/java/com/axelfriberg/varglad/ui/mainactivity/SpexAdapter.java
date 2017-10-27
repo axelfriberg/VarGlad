@@ -71,8 +71,6 @@ public class SpexAdapter extends RecyclerView.Adapter<SpexAdapter.ViewHolder>  {
         holder.mImageView.setImageResource(spex.getPosterID());
     }
 
-    //TODO: Sort by name
-    //TODO: Add search
     void sort(SortingMode sortingMode) {
         switch (sortingMode) {
             case YEAR_ASCENDING:

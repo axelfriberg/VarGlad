@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
 
         if (savedInstanceState == null) {
             mSpexAdapter.sort(SpexAdapter.SortingMode.YEAR_DESCENDING);
-            mCheckedItemID = R.id.sort_year_descending;
+            mCheckedItemID = R.id.sort_spex_year_descending;
         } else {
             SpexAdapter.SortingMode sortingMode =
                     (SpexAdapter.SortingMode) savedInstanceState.getSerializable(SIS_SORTING_MODE);
@@ -74,10 +74,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
         }
 
         mRecyclerView.setAdapter(mSpexAdapter);
-
-        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this,
-                R.anim.layout_animation_from_bottom);
-        mRecyclerView.setLayoutAnimation(animation);
     }
 
     @Override
@@ -90,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_sort:
+            case R.id.action_sort_spex:
                 showSortingPopupMenu();
                 return true;
             default:
@@ -108,34 +104,34 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewClick
     }
 
     private PopupMenu createPopupMenu() {
-        PopupMenu popupMenu = new PopupMenu(this, findViewById(R.id.action_sort));
+        PopupMenu popupMenu = new PopupMenu(this, findViewById(R.id.action_sort_spex));
 
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.sort_year_ascending:
+                    case R.id.sort_spex_year_ascending:
                         if (!item.isChecked()) {
                             mSpexAdapter.sort(SpexAdapter.SortingMode.YEAR_ASCENDING);
                             checkSortingItem(item);
                             runLayoutEnterAnimation(mRecyclerView);
                         }
                         return true;
-                    case R.id.sort_year_descending:
+                    case R.id.sort_spex_year_descending:
                         if (!item.isChecked()) {
                             mSpexAdapter.sort(SpexAdapter.SortingMode.YEAR_DESCENDING);
                             checkSortingItem(item);
                             runLayoutEnterAnimation(mRecyclerView);
                         }
                         return true;
-                    case R.id.sort_title_ascending:
+                    case R.id.sort_spex_title_ascending:
                         if (!item.isChecked()) {
                             mSpexAdapter.sort(SpexAdapter.SortingMode.TITLE_ASCENDING);
                             checkSortingItem(item);
                             runLayoutEnterAnimation(mRecyclerView);
                         }
                         return true;
-                    case R.id.sort_title_descending:
+                    case R.id.sort_spex_title_descending:
                         if (!item.isChecked()) {
                             mSpexAdapter.sort(SpexAdapter.SortingMode.TITLE_DESCENDING);
                             checkSortingItem(item);

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_sort">Sortera</string>
+    <string name="poster_content_description">Affisch för ett spex</string>
+    <string name="sort_year_ascending">Sortera efter år (gammal-ny)</string>
+    <string name="sort_year_descending">Sortera efter år (ny-gammal)</string>
+    <string name="sort_title_descending">Sortera efter titel (Ö-A)</string>
+    <string name="sort_title_ascending">Sortera efter titel (A-Ö)</string>
+</resources>
